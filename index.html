@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Fraud Division | Federal Bureau of Investigation</title>
-<meta name="description" content="Report investment fraud, crypto fraud, wire fraud and elder fraud. Fraud statistics, alerts, and complaint intake.">
+<title>Crypto Fraud Intake</title>
+<meta name="description" content="Independent intake desk for crypto and investment fraud. File your case in writing, free. Not affiliated with the FBI.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Ccircle cx='100' cy='100' r='96' fill='%230b2a5b'/%3E%3Ccircle cx='100' cy='100' r='72' fill='none' stroke='%23c8a04a' stroke-width='6'/%3E%3Cpath d='M100 62 L128 74 v26 c0 18-12 30-28 38-16-8-28-20-28-38V74z' fill='%23123f7d' stroke='%23c8a04a' stroke-width='3'/%3E%3C/svg%3E">
 <style>
 :root{--navy:#0b2a5b;--navy-dk:#001a3d;--navy-lt:#123f7d;--gold:#c8a04a;--gold-lt:#e2c47f;--ink:#1a1d21;--muted:#55606e;--line:#d8dde5;--bg-alt:#f4f5f7}
@@ -32,7 +32,6 @@ img,svg{display:block;max-width:100%}
 .btn{display:inline-block;padding:.7rem 1.2rem;font-size:11.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;border:2px solid transparent;cursor:pointer;transition:.18s;text-align:center;font-family:inherit}
 .btn-gold{background:var(--gold);color:#111}
 .btn-navy{background:var(--navy);color:#fff}
-.btn-outline{border-color:var(--navy);color:var(--navy)}
 .btn-ghost{border-color:rgba(255,255,255,.5);color:#fff}
 .main-nav{background:var(--navy);position:sticky;top:0;z-index:90}
 .main-nav .wrap{display:flex;flex-wrap:wrap;position:relative}
@@ -67,7 +66,6 @@ img,svg{display:block;max-width:100%}
 .card{background:#fff;border:1px solid var(--line);border-top:3px solid var(--navy);padding:1.3rem}
 .card h3{font-size:1rem;margin-bottom:.4rem;color:var(--navy-dk)}
 .card p{font-size:13.5px;color:var(--muted)}
-.card .icon{width:32px;height:32px;color:var(--navy-lt);margin-bottom:.8rem}
 .more{font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;margin-top:.8rem;display:inline-block}
 .steps{counter-reset:s;display:grid;gap:.9rem}
 .step{display:flex;gap:1rem;background:#fff;border:1px solid var(--line);padding:1.1rem}
@@ -138,7 +136,6 @@ details.faq .body{padding:0 1rem 1rem;font-size:13.5px;color:var(--muted)}
   .nav-toggle{display:block}
   .main-nav a{display:none;width:100%;border-bottom:1px solid rgba(255,255,255,.1)}
   .main-nav.open a{display:block}
-  .footer .cols{grid-template-columns:1fr 1fr}
 }
 </style>
 </head>
@@ -148,8 +145,8 @@ details.faq .body{padding:0 1rem 1rem;font-size:13.5px;color:var(--muted)}
 
 <div class="gov-bar">
   <div class="wrap">
-    <span>Fraud &amp; Financial Crimes · Washington, D.C.</span>
-    <span><a href="#/about">About</a> · <a href="#/offices">Offices</a> · <a href="#/contact">Contact</a></span>
+    <span id="barLeft"></span>
+    <span><a href="#/about">About</a> · <a href="#/contact">Contact</a></span>
   </div>
 </div>
 
@@ -157,8 +154,8 @@ details.faq .body{padding:0 1rem 1rem;font-size:13.5px;color:var(--muted)}
   <div class="wrap">
     <a href="#/" aria-label="Home" id="sealLink"></a>
     <div>
-      <div class="org">Federal Bureau of Investigation</div>
-      <div class="div">Fraud &amp; Financial Crimes Division</div>
+      <div class="org" id="brand"></div>
+      <div class="div" id="tagline"></div>
     </div>
     <div class="mast-right">
       <form class="search" id="searchForm" role="search">
@@ -174,12 +171,12 @@ details.faq .body{padding:0 1rem 1rem;font-size:13.5px;color:var(--muted)}
   <div class="wrap">
     <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-label="Menu">☰</button>
     <a href="#/report" data-r="report">Report Fraud</a>
-    <a href="#/types" data-r="types">Fraud Types</a>
+    <a href="#/types" data-r="types">Scam Types</a>
     <a href="#/stats" data-r="stats">Statistics</a>
     <a href="#/alerts" data-r="alerts">Alerts</a>
     <a href="#/process" data-r="process">What Happens Next</a>
     <a href="#/faq" data-r="faq">FAQs</a>
-    <a href="#/offices" data-r="offices">Field Offices</a>
+    <a href="#/about" data-r="about">About</a>
   </div>
 </nav>
 
@@ -190,14 +187,14 @@ details.faq .body{padding:0 1rem 1rem;font-size:13.5px;color:var(--muted)}
     <div class="cols">
       <div>
         <div id="sealFoot"></div>
-        <div class="brand">Federal Bureau of Investigation</div>
-        <p style="font-size:12.5px;color:#8ea3bb;margin-top:.4rem">Fraud &amp; Financial Crimes Division<br>J. Edgar Hoover Building<br>935 Pennsylvania Avenue NW<br>Washington, D.C. 20535</p>
+        <div class="brand" id="brandFoot"></div>
+        <p style="font-size:12.5px;color:#8ea3bb;margin-top:.4rem" id="footAddr"></p>
       </div>
       <div>
         <h4>Report</h4>
-        <a href="#/report">File a report</a>
+        <a href="#/report">File a case</a>
         <a href="#/track">Check status</a>
-        <a href="#/types">Fraud types</a>
+        <a href="#/types">Scam types</a>
         <a href="#/alerts">Alerts</a>
       </div>
       <div>
@@ -216,148 +213,157 @@ details.faq .body{padding:0 1rem 1rem;font-size:13.5px;color:var(--muted)}
       </div>
     </div>
     <div class="bottom">
-      <p><span class="d">Independent clone.</span> This site reproduces the structure and design language of the FBI's fraud-reporting pages for demonstration. It is not operated by the U.S. Department of Justice. Figures are from the FBI's published 2024 Internet Crime Report.</p>
-      <p style="margin-top:.6rem">© <span id="yr"></span> · Fraud &amp; Financial Crimes Division</p>
+      <p><span class="d">Independent service.</span> <span id="footDisc"></span></p>
+      <p style="margin-top:.6rem">© <span id="yr"></span> · <span id="footBrand2"></span></p>
     </div>
   </div>
 </footer>
 
 <script>
-const seal = `<svg class="seal" viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="96" fill="#0b2a5b"/><circle cx="100" cy="100" r="88" fill="none" stroke="#c8a04a" stroke-width="2"/><circle cx="100" cy="100" r="60" fill="#0b2a5b" stroke="#c8a04a" stroke-width="1.5"/><defs><path id="aT" d="M100,100 m-78,0 a78,78 0 1,1 156,0"/><path id="aB" d="M100,100 m-78,0 a78,78 0 1,0 156,0"/></defs><text fill="#c8a04a" font-size="10.5" font-weight="700" letter-spacing="2.1" font-family="Georgia,serif"><textPath href="#aT" startOffset="50%" text-anchor="middle">FEDERAL BUREAU OF INVESTIGATION</textPath></text><text fill="#c8a04a" font-size="8.5" font-weight="700" letter-spacing="1.8" font-family="Georgia,serif"><textPath href="#aB" startOffset="50%" text-anchor="middle">FIDELITY · BRAVERY · INTEGRITY</textPath></text><path d="M100 62 L128 74 v26 c0 18-12 30-28 38-16-8-28-20-28-38V74z" fill="#123f7d" stroke="#c8a04a" stroke-width="2"/><path d="M100 62 L128 74 v26 c0 18-12 30-28 38z" fill="#0b2a5b"/><path d="M84 88h32M84 96h32M84 104h32" stroke="#c8a04a" stroke-width="1.5"/><circle cx="100" cy="73" r="3.4" fill="#c8a04a"/></svg>`;
+/* ============================================================
+   EDIT THESE FOUR LINES ONLY. Everything else reads from them.
+   ============================================================ */
+const BRAND     = 'Crypto Fraud Intake';
+const TAGLINE   = 'Independent fraud intake desk';
+const EMAIL     = 'you@example.com';
+const ACCESS_KEY = 'PASTE-YOUR-WEB3FORMS-KEY';
+/* ============================================================ */
+
+const seal = `<svg class="seal" viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="96" fill="#0b2a5b"/><circle cx="100" cy="100" r="88" fill="none" stroke="#c8a04a" stroke-width="2"/><circle cx="100" cy="100" r="60" fill="#0b2a5b" stroke="#c8a04a" stroke-width="1.5"/><defs><path id="aT" d="M100,100 m-78,0 a78,78 0 1,1 156,0"/><path id="aB" d="M100,100 m-78,0 a78,78 0 1,0 156,0"/></defs><text fill="#c8a04a" font-size="10.5" font-weight="700" letter-spacing="2.1" font-family="Georgia,serif"><textPath href="#aT" startOffset="50%" text-anchor="middle">INDEPENDENT INTAKE</textPath></text><text fill="#c8a04a" font-size="8.5" font-weight="700" letter-spacing="1.8" font-family="Georgia,serif"><textPath href="#aB" startOffset="50%" text-anchor="middle">CRYPTO · INVESTMENT · WIRE</textPath></text><path d="M100 62 L128 74 v26 c0 18-12 30-28 38-16-8-28-20-28-38V74z" fill="#123f7d" stroke="#c8a04a" stroke-width="2"/><path d="M100 62 L128 74 v26 c0 18-12 30-28 38z" fill="#0b2a5b"/><path d="M84 88h32M84 96h32M84 104h32" stroke="#c8a04a" stroke-width="1.5"/><circle cx="100" cy="73" r="3.4" fill="#c8a04a"/></svg>`;
+
 document.getElementById('sealLink').innerHTML = seal;
 document.getElementById('sealFoot').innerHTML = seal;
+document.getElementById('brand').textContent = BRAND;
+document.getElementById('tagline').textContent = TAGLINE;
+document.getElementById('barLeft').textContent = TAGLINE + ' · Independent';
+document.getElementById('brandFoot').textContent = BRAND;
+document.getElementById('footBrand2').textContent = BRAND;
+document.getElementById('footAddr').innerHTML = TAGLINE + '<br>Fraud intake · Worldwide';
+document.getElementById('footDisc').textContent = BRAND + ' is an independent intake desk. It is not the FBI, not a government body, and holds no official status. Statistics are from the FBI\'s published 2024 Internet Crime Report. Recovery is never guaranteed.';
 document.getElementById('yr').textContent = new Date().getFullYear();
+document.title = BRAND + ' · ' + TAGLINE;
 
 const head = (label, h1, p) => `<div class="wrap"><p class="crumb"><a href="#/">Home</a><span>/</span>${h1}</p></div><div class="page-head"><div class="wrap"><span class="section-label">${label}</span><h1>${h1}</h1><p>${p}</p></div></div>`;
 
 const P = {};
 
 P[''] = () => `
-<div class="alert-bar"><div class="wrap"><strong>Alert</strong><span>Surge in fraudulent crypto “recovery” firms demanding upfront fees. <a href="#/alerts">Read the advisory →</a></span></div></div>
+<div class="alert-bar"><div class="wrap"><strong>Alert</strong><span>Fake “recovery firms” are targeting people who already lost money. <a href="#/alerts">Read the advisory →</a></span></div></div>
 <section class="hero"><div class="wrap">
   <div>
-    <p class="kicker">Financial Crimes · Public Reporting</p>
-    <h1>Report fraud.<br>Start the paper trail.</h1>
-    <p class="lede">Every complaint builds the pattern. Report investment fraud, wire fraud, crypto schemes and elder exploitation — free, in under ten minutes.</p>
-    <div class="hero-actions"><a href="#/report" class="btn btn-gold">File a complaint</a><a href="#/process" class="btn btn-ghost">What happens next</a></div>
-    <div class="hero-meta"><span>No fee to report</span><span>Reference issued</span><span>Open 24/7</span></div>
+    <p class="kicker">Crypto &amp; Investment Fraud</p>
+    <h1>Lost money to a scam?<br>Start the file.</h1>
+    <p class="lede">We are an independent intake desk. We take your case in writing, check the platform, and package it for your bank, the exchange and the authorities. Free to file — recovery is never guaranteed.</p>
+    <div class="hero-actions"><a href="#/report" class="btn btn-gold">File your case</a><a href="#/process" class="btn btn-ghost">What happens next</a></div>
+    <div class="hero-meta"><span>Free to file</span><span>Reply within 5 hours</span><span>Not affiliated with the FBI</span></div>
   </div>
   <div class="hero-card">
-    <h2>Already reported?</h2>
-    <p>Check an existing complaint with your reference number.</p>
-    <a href="#/track" class="btn btn-navy" style="width:100%">Check report status</a>
+    <h2>Already filed?</h2>
+    <p>Check an existing case with your reference number.</p>
+    <a href="#/track" class="btn btn-navy" style="width:100%">Check case status</a>
   </div>
 </div></section>
 
 <section class="stat-band"><div class="wrap"><div class="stat-grid">
-  <div><div class="num">859,532</div><div class="lbl">Complaints received</div></div>
+  <div><div class="num">859,532</div><div class="lbl">Complaints, 2024</div></div>
   <div><div class="num">$16.6B</div><div class="lbl">Reported losses</div></div>
   <div><div class="num">+33%</div><div class="lbl">Loss increase YoY</div></div>
   <div><div class="num">#1</div><div class="lbl">Phishing, by volume</div></div>
 </div></div></section>
 
 <section class="section"><div class="wrap">
-  <div class="section-head"><span class="section-label">Most reported</span><div class="rule"></div><h2>Fraud types under active investigation</h2><p>Select a category for the pattern, the red flags and the evidence to preserve.</p></div>
+  <div class="section-head"><span class="section-label">Most reported</span><div class="rule"></div><h2>Scam types we take in</h2><p>Select a category for the pattern, the red flags and the evidence to preserve.</p></div>
   <div class="grid-3">
     <article class="card"><h3>Investment &amp; Crypto Fraud</h3><p>Fake brokerages, ponzi pools, “guaranteed” yield, withdrawal freezes.</p><a class="more" href="#/types">Details →</a></article>
-    <article class="card"><h3>Wire &amp; ACH Fraud</h3><p>Diverted closing wires, spoofed invoices, business email compromise.</p><a class="more" href="#/types">Details →</a></article>
-    <article class="card"><h3>Elder Fraud</h3><p>Grandparent scams, tech support pop-ups, annuity schemes.</p><a class="more" href="#/types">Details →</a></article>
+    <article class="card"><h3>Wire &amp; Transfer Fraud</h3><p>Diverted wires, spoofed invoices, business email compromise.</p><a class="more" href="#/types">Details →</a></article>
+    <article class="card"><h3>Romance &amp; Pig Butchering</h3><p>Relationship built over weeks, then a funding request.</p><a class="more" href="#/types">Details →</a></article>
   </div>
 </div></section>
 
 <section class="section alt"><div class="wrap">
-  <div class="section-head"><span class="section-label">Intake process</span><div class="rule"></div><h2>From complaint to case file</h2><p>Filing takes minutes. What follows is documented at every stage.</p></div>
+  <div class="section-head"><span class="section-label">Our process</span><div class="rule"></div><h2>From your email to a documented file</h2><p>You write it down once. We organise it from there.</p></div>
   <div class="steps">
-    <div class="step"><div><h3>Submit the complaint</h3><p>Encrypted intake. Reference number issued immediately by email.</p></div></div>
-    <div class="step"><div><h3>Triage and pattern match</h3><p>Checked against open matters, shared infrastructure and wallet clusters.</p></div></div>
-    <div class="step"><div><h3>Assignment or referral</h3><p>Above-threshold cases go to a field office; others to partner regulators.</p></div></div>
-    <div class="step"><div><h3>Evidence preservation</h3><p>Hashes, statements and correspondence logged to the file.</p></div></div>
+    <div class="step"><div><h3>You file in writing</h3><p>One form. Reference number issued immediately.</p></div></div>
+    <div class="step"><div><h3>We check the platform</h3><p>Domain age, hosting, registration, known wallet clusters.</p></div></div>
+    <div class="step"><div><h3>We tell you what's viable</h3><p>An honest read on whether anything is recoverable, and why.</p></div></div>
+    <div class="step"><div><h3>You get the package</h3><p>A written file you can send to your bank, exchange and regulator.</p></div></div>
   </div>
 </div></section>
 
 <section class="section"><div class="wrap">
-  <div class="notice"><strong>Before you file</strong> Have transaction records and correspondence ready. Report within 72 hours of the loss where possible — early reports give the best chance of a freeze.</div>
-  <a href="#/report" class="btn btn-navy">Begin complaint</a>
+  <div class="notice"><strong>Before you file</strong> Have transaction records and correspondence ready. File within 72 hours of the loss if you can — early reports give the best chance of a freeze. Call your bank or exchange first.</div>
+  <a href="#/report" class="btn btn-navy">Begin</a>
 </div></section>`;
 
-P['report'] = () => `${head('Secure intake','File a fraud complaint','Complete as much as you can. Fields marked * are required. You will receive a reference number — keep it.')}
+P['report'] = () => `${head('Secure intake','File your case','Fill in what you can. Fields marked * are required. You will get a reference number by email — keep it.')}
 <div class="wrap" style="padding-top:1.8rem;padding-bottom:2.6rem">
-  <div class="notice blue"><strong>Time matters</strong> Report within 72 hours if possible. Early reports improve the odds of an exchange or bank freeze.</div>
+  <div class="notice blue"><strong>Time matters</strong> File within 72 hours if possible, and call your bank or exchange first. Early reports improve the odds of a freeze.</div>
   <div class="form-shell"><form data-form>
-    <input type="text" class="hp" tabindex="-1" aria-hidden="true">
+    <input type="text" name="botcheck" class="hp" tabindex="-1" aria-hidden="true">
     <div class="form-row">
-      <div class="field"><label for="fn">First name *</label><input id="fn" required></div>
-      <div class="field"><label for="ln">Last name *</label><input id="ln" required></div>
+      <div class="field"><label for="fn">First name *</label><input id="fn" name="first_name" required></div>
+      <div class="field"><label for="ln">Last name *</label><input id="ln" name="last_name" required></div>
     </div>
     <div class="form-row">
-      <div class="field"><label for="em">Email *</label><input id="em" type="email" required></div>
-      <div class="field"><label for="ph">Phone <span class="hint">(optional)</span></label><input id="ph" type="tel"></div>
+      <div class="field"><label for="em">Email *</label><input id="em" name="email" type="email" required></div>
+      <div class="field"><label for="ph">Phone / Telegram <span class="hint">(optional)</span></label><input id="ph" name="phone"></div>
     </div>
-    <div class="field"><label for="ty">Fraud type *</label><select id="ty" required>
+    <div class="field"><label for="ty">Scam type *</label><select id="ty" name="fraud_type" required>
       <option value="">Select a category</option>
-      <option>Investment / securities fraud</option><option>Cryptocurrency fraud</option>
-      <option>Wire or ACH transfer fraud</option><option>Business email compromise</option>
-      <option>Elder fraud</option><option>Identity theft</option><option>Mortgage or real estate fraud</option>
-      <option>Romance / confidence fraud</option><option>Tech support scam</option>
-      <option>Charity or disaster fraud</option><option>Other</option></select></div>
+      <option>Cryptocurrency fraud</option><option>Investment / securities fraud</option>
+      <option>Romance / pig butchering</option><option>Wire or transfer fraud</option>
+      <option>Business email compromise</option><option>Fake recovery firm</option>
+      <option>Identity theft</option><option>Other</option></select></div>
     <div class="form-row">
-      <div class="field"><label for="amt">Amount lost (USD)</label><input id="amt" inputmode="numeric" placeholder="0"></div>
-      <div class="field"><label for="dt">Date of loss</label><input id="dt" type="date"></div>
+      <div class="field"><label for="amt">Amount lost (USD)</label><input id="amt" name="amount" inputmode="numeric" placeholder="0"></div>
+      <div class="field"><label for="dt">Date of loss</label><input id="dt" name="date_lost" type="date"></div>
     </div>
-    <div class="field"><label for="pl">Platform, firm or domain *</label><input id="pl" required placeholder="example-broker.com"></div>
-    <div class="field"><label for="su">What happened *</label><textarea id="su" rows="7" required placeholder="How contact was made, what you were told, how funds were sent, what happened on withdrawal."></textarea></div>
-    <div class="field"><label for="rf">Hashes or reference numbers <span class="hint">(optional)</span></label><textarea id="rf" rows="3" placeholder="One per line."></textarea></div>
-    <div class="field"><div class="checkline"><input id="cs" type="checkbox" required><label for="cs" style="text-transform:none;letter-spacing:0;font-weight:400;font-size:12.5px;margin:0">Information is accurate and may be recorded. *</label></div></div>
-    <button type="submit" class="btn btn-navy" style="width:100%">Submit complaint</button>
-    <p class="form-note">Free. A reference beginning <strong>IC3-</strong> is issued immediately. Save it.</p>
+    <div class="field"><label for="pl">Platform, firm or domain *</label><input id="pl" name="platform" required placeholder="example-broker.com"></div>
+    <div class="field"><label for="su">What happened *</label><textarea id="su" name="summary" rows="7" required placeholder="How contact was made, what you were told, how funds were sent, what happened when you tried to withdraw."></textarea></div>
+    <div class="field"><label for="rf">Wallet addresses or transaction hashes <span class="hint">(optional)</span></label><textarea id="rf" name="references" rows="3" placeholder="One per line."></textarea></div>
+    <div class="field"><div class="checkline"><input id="cs" name="consent" type="checkbox" required><label for="cs" style="text-transform:none;letter-spacing:0;font-weight:400;font-size:12.5px;margin:0">The information is accurate and may be recorded. *</label></div></div>
+    <button type="submit" class="btn btn-navy" style="width:100%">Submit case</button>
+    <p class="form-note">Free. You will receive a confirmation email with a reference number.</p>
   </form></div>
   <div class="prose"><h2>What to have ready</h2><ul>
-    <li>Bank or exchange statements showing outgoing transfers</li>
+    <li>Bank or exchange statements showing the outgoing transfers</li>
     <li>Screenshots of the platform, chats and emails</li>
-    <li>Wallet addresses or transaction hashes if crypto was used</li>
+    <li>Wallet addresses or transaction hashes</li>
     <li>The exact domain and any phone numbers used</li>
-  </ul></div>
+  </ul>
+  <p>Do not send originals. Copies are enough to start.</p></div>
 </div>`;
 
-P['types'] = () => `${head('Reference','Fraud types','Each category lists the mechanism, the red flags and the evidence that matters. Where a category overlaps, report the dominant one.')}
+P['types'] = () => `${head('Reference','Scam types','Each category lists the mechanism, the red flags and the evidence that matters.')}
 <div class="wrap"><div class="prose">
-  <h2>Investment and securities fraud</h2><p>Sales of securities or “products” where returns are fabricated, funds are pooled into a ponzi, or the operator is unlicensed.</p>
-  <h3>Red flags</h3><ul><li>Guaranteed, unusually steady returns</li><li>Pressure to recruit others</li><li>Withdrawals met with new fee demands</li><li>Offshore entity, no audited statements</li></ul>
-  <h3>Preserve</h3><p>Deposit confirmations, statements, the signed agreement, all message threads.</p>
-
   <h2>Cryptocurrency fraud</h2><p>Fake exchanges, mining pools, wallet drainers, romance-investment hybrids, exchange impersonation.</p>
   <h3>Red flags</h3><ul><li>Balances shown but withdrawals need a “release fee”</li><li>Support only via Telegram or WhatsApp</li><li>Unknown contract approval requests</li><li>Domain registered months ago</li></ul>
   <h3>Preserve</h3><p>Wallet addresses, transaction hashes, chain and network, screenshots of the balance screen.</p>
 
-  <h2>Wire and ACH fraud</h2><p>Diverted wires — most often in property closings — and unauthorised ACH debits.</p>
-  <h3>Red flags</h3><ul><li>Wire instructions arriving by email that differ from an earlier copy</li><li>Last-minute change of beneficiary details</li><li>Sender domain one character off</li></ul>
-  <h3>Preserve</h3><p>Both instruction sets, the SWIFT/ABA confirmation, email headers. Call the bank first.</p>
+  <h2>Investment and securities fraud</h2><p>Returns are fabricated, funds pooled into a ponzi, or the operator is unlicensed.</p>
+  <h3>Red flags</h3><ul><li>Guaranteed, unusually steady returns</li><li>Pressure to recruit others</li><li>Withdrawals met with new fee demands</li></ul>
+  <h3>Preserve</h3><p>Deposit confirmations, statements, the signed agreement, all message threads.</p>
 
-  <h2>Business email compromise</h2><p>Mailbox compromise or spoofing to redirect payments or harvest payroll data.</p>
-  <h3>Red flags</h3><ul><li>Reply-to differs from displayed sender</li><li>Urgency plus secrecy</li><li>Changed vendor banking details</li></ul>
-  <h3>Preserve</h3><p>Full headers, the original invoice, the fraudulent replacement.</p>
-
-  <h2>Elder fraud</h2><p>Schemes targeting 60+: grandparent emergencies, remote-access pop-ups, fake Medicare products, guardian impersonation.</p>
-  <h3>Red flags</h3><ul><li>Insistence on gift cards, couriers or crypto</li><li>Remote software installed at a caller's direction</li><li>Claim a relative is held or arrested</li></ul>
-  <h3>Preserve</h3><p>Caller numbers, gift-card receipts, session records, a note of what was said.</p>
-
-  <h2>Identity theft</h2><p>Use of identifiers to open accounts, file returns or obtain credit.</p>
-  <h3>Preserve</h3><p>Credit reports with disputed entries highlighted, and any notices received.</p>
-
-  <h2>Romance and confidence fraud</h2><p>Relationship built over weeks, then a funding request — travel, medical, customs, or an “investment”.</p>
+  <h2>Romance and pig butchering</h2><p>Relationship built over weeks, then a funding request — travel, medical, customs, or an “investment”.</p>
+  <h3>Red flags</h3><ul><li>Video calls avoided or very short</li><li>Platform they introduced you to</li><li>Deposits grow, withdrawals stall</li></ul>
   <h3>Preserve</h3><p>Profile links, chat export, every transfer record.</p>
 
-  <h2>Tech support scams</h2><p>Browser-lock pop-ups with a support number, leading to remote access and inflated invoices.</p>
-  <h3>Preserve</h3><p>The pop-up URL, the remote tool, the invoice.</p>
+  <h2>Wire and transfer fraud</h2><p>Diverted wires — often in property closings — and unauthorised debits.</p>
+  <h3>Red flags</h3><ul><li>Instructions arriving by email that differ from an earlier copy</li><li>Last-minute change of beneficiary details</li></ul>
+  <h3>Preserve</h3><p>Both instruction sets, the confirmation, email headers. Call the bank first.</p>
 
-  <h2>Charity and disaster fraud</h2><p>Solicitations after a disaster mimicking legitimate relief funds.</p>
-  <h3>Preserve</h3><p>The solicitation, and the registration number claimed.</p>
+  <h2>Fake recovery firms</h2><p>A second firm contacts you after a loss, promising recovery for an upfront fee.</p>
+  <h3>Red flags</h3><ul><li>Unsolicited contact after you already reported</li><li>Claim of a “recovery fund” or “blocked wallet”</li><li>Fee demanded before any evidence</li></ul>
+  <h3>Preserve</h3><p>Their domain, the fee request, and anything they claim to have found.</p>
 
-  <div class="notice"><strong>Not on this list?</strong> Select “Other” on the form and describe the mechanism.</div>
-  <a href="#/report" class="btn btn-navy">File a complaint</a>
+  <h2>Business email compromise</h2><p>Mailbox compromise or spoofing to redirect payments.</p>
+  <h3>Preserve</h3><p>Full headers, the original invoice, the fraudulent replacement.</p>
+
+  <div class="notice"><strong>Not on this list?</strong> Choose “Other” and describe the mechanism.</div>
+  <a href="#/report" class="btn btn-navy">File your case</a>
 </div></div>`;
 
-P['stats'] = () => `${head('Annual reporting','Fraud statistics, 2024','Reported volumes and losses for 2024. Figures reflect complaints filed, not confirmed outcomes.')}
+P['stats'] = () => `${head('Context','Fraud statistics, 2024','Reported volumes and losses for 2024, from the FBI\'s published Internet Crime Report.')}
 <div class="wrap" style="padding:1.8rem 0 2.6rem">
   <div class="stat-band" style="margin-bottom:1.6rem"><div class="wrap" style="padding:0"><div class="stat-grid">
     <div><div class="num">859,532</div><div class="lbl">Complaints</div></div>
@@ -366,7 +372,7 @@ P['stats'] = () => `${head('Annual reporting','Fraud statistics, 2024','Reported
     <div><div class="num">191,457</div><div class="lbl">Phishing reports</div></div>
   </div></div></div>
   <h2 style="color:#001a3d;margin-bottom:.3rem">By category</h2>
-  <p style="color:#55606e;font-size:13px;margin-bottom:.9rem">Ordered by volume. Loss figures are self-reported and unaudited.</p>
+  <p style="color:#55606e;font-size:13px;margin-bottom:.9rem">Ordered by volume. Losses are self-reported and unaudited.</p>
   <div class="table-wrap" style="margin-bottom:1.6rem"><table>
     <thead><tr><th>Category</th><th>Complaints</th><th>Loss</th></tr></thead><tbody>
       <tr><td>Phishing / spoofing</td><td>191,457</td><td>$5.1B</td></tr>
@@ -379,144 +385,112 @@ P['stats'] = () => `${head('Annual reporting','Fraud statistics, 2024','Reported
       <tr><td>Mortgage / real estate</td><td>3,815</td><td>$0.2B</td></tr>
     </tbody></table></div>
   <div class="notice blue"><strong>How to read these</strong> Reported losses are a floor, not a ceiling. Much fraud goes unreported.</div>
-  <div class="prose" style="padding-bottom:0">
-    <h2>Methodology</h2><p>Complaints counted once per submission; multiple complaints on one scheme are recorded separately. Losses are the victim-reported figure at intake — recoveries are not netted off. Categories overlap.</p>
-    <h2>Prior years</h2><p>Reported losses rose from $12.5B in 2023 to $16.6B in 2024 — up 33% on slightly lower volume.</p>
-  </div>
 </div>`;
 
-P['alerts'] = () => `${head('Advisories','Current alerts','Active schemes, updated as patterns are confirmed. Advisories stay listed after a scheme declines.')}
+P['alerts'] = () => `${head('Advisories','Current alerts','Active schemes, updated as patterns are confirmed.')}
 <div class="wrap" style="padding:1.8rem 0 2.6rem">
-  <article class="card" style="margin-bottom:1rem;border-top-color:#a11b1b"><p style="font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:#a11b1b;font-weight:700;margin-bottom:.4rem">Advisory · Active</p><h3>Fraudulent “asset recovery” firms</h3><p style="margin-bottom:.7rem">Victims are re-targeted by firms promising recovery for an upfront retainer or “court fee”. Payment taken; recovery never follows.</p><p style="font-size:13px"><strong>How to tell:</strong> unsolicited contact after you already reported; a claim of a “recovery fund”; fees before any evidence; a domain under six months old.</p></article>
-  <article class="card" style="margin-bottom:1rem;border-top-color:#a11b1b"><p style="font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:#a11b1b;font-weight:700;margin-bottom:.4rem">Advisory · Active</p><h3>Deepfaked executive authorisation</h3><p style="font-size:13px">Video-call clones of CFOs approving urgent wires. <strong>Action:</strong> verify by callback on a number from your own records.</p></article>
-  <article class="card" style="margin-bottom:1rem"><p style="font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:#7a4f00;font-weight:700;margin-bottom:.4rem">Advisory · Monitoring</p><h3>“Wallet validation” drainers</h3><p style="font-size:13px">Sites posing as exchange support request a wallet signature granting unlimited approval. <strong>Action:</strong> revoke unfamiliar approvals; check the contract address.</p></article>
-  <article class="card"><p style="font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:#7a4f00;font-weight:700;margin-bottom:.4rem">Advisory · Monitoring</p><h3>Escrow impersonation at closings</h3><p style="font-size:13px">Spoofed escrow mailboxes send revised wire instructions days before closing. <strong>Action:</strong> confirm by phone; treat last-minute changes as suspect.</p></article>
-  <div style="margin-top:1.8rem"><a href="#/report" class="btn btn-navy">Report a scheme</a></div>
+  <article class="card" style="margin-bottom:1rem;border-top-color:#a11b1b"><p style="font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:#a11b1b;font-weight:700;margin-bottom:.4rem">Advisory · Active</p><h3>Fake “recovery” firms</h3><p style="margin-bottom:.7rem">Victims are re-targeted by firms promising recovery for an upfront retainer or “court fee”. Payment taken; recovery never follows.</p><p style="font-size:13px"><strong>How to tell:</strong> unsolicited contact after you already reported; a claim of a “recovery fund”; fees before any evidence; a domain under six months old.</p></article>
+  <article class="card" style="margin-bottom:1rem"><p style="font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:#7a4f00;font-weight:700;margin-bottom:.4rem">Advisory · Monitoring</p><h3>“Wallet validation” drainers</h3><p style="font-size:13px">Sites posing as exchange support request a wallet signature granting unlimited approval. <strong>Action:</strong> revoke unfamiliar approvals.</p></article>
+  <article class="card"><p style="font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:#7a4f00;font-weight:700;margin-bottom:.4rem">Advisory · Monitoring</p><h3>Escrow impersonation at closings</h3><p style="font-size:13px">Spoofed escrow mailboxes send revised wire instructions days before closing. <strong>Action:</strong> confirm by phone.</p></article>
+  <div style="margin-top:1.8rem"><a href="#/report" class="btn btn-navy">File your case</a></div>
 </div>`;
 
-P['process'] = () => `${head('After filing','What happens next','Filing creates a record. It does not open a criminal case on its own, and does not guarantee money back. Here is the honest sequence.')}
+P['process'] = () => `${head('After filing','What happens next','Filing creates a record. It does not guarantee money back. Here is the honest sequence.')}
 <div class="wrap" style="padding:1.8rem 0 2.6rem">
   <div class="steps" style="margin-bottom:1.8rem">
-    <div class="step"><div><h3>Immediate confirmation</h3><p>A reference is issued and emailed. Submission timestamped and stored.</p></div></div>
-    <div class="step"><div><h3>Triage, 1–5 business days</h3><p>An analyst reads it and cross-checks platform, domain and wallets against open matters.</p></div></div>
-    <div class="step"><div><h3>Threshold decision</h3><p>Above-threshold cases go to a field office; others are referred to regulators, exchanges or consumer bodies.</p></div></div>
-    <div class="step"><div><h3>Investigation</h3><p>If assigned, an agent or analyst may contact you — usually by email or portal.</p></div></div>
-    <div class="step"><div><h3>Outcome</h3><p>Indictment, referral, or closure. Closure still feeds pattern analysis.</p></div></div>
+    <div class="step"><div><h3>Confirmation</h3><p>Reference issued and emailed. Your submission is timestamped.</p></div></div>
+    <div class="step"><div><h3>Platform check</h3><p>Domain age, hosting, registration, wallet clusters, known complaints.</p></div></div>
+    <div class="step"><div><h3>Viability call</h3><p>An honest read, usually inside 48 hours, on whether anything is recoverable.</p></div></div>
+    <div class="step"><div><h3>Written file</h3><p>A package you can send to your bank, the exchange and the regulator.</p></div></div>
+    <div class="step"><div><h3>Referral</h3><p>Where legal action is needed, we point you to counsel in the right jurisdiction.</p></div></div>
   </div>
   <div class="prose" style="padding-bottom:0">
-    <h2>What is realistic</h2><p>Recovery depends on speed and route. Wires recalled within 24–72 hours occasionally return in part. Crypto at a cooperating exchange can sometimes be frozen. Crypto sent to self-custody after several hops is usually gone. The biggest factor is how fast the receiving institution is told — which is why you call them first.</p>
-    <h2>What this division will not do</h2><ul><li>Charge a fee to file</li><li>Guarantee an outcome, timeline or figure</li><li>Give legal advice or represent you</li><li>Recover funds directly on your behalf</li></ul>
-    <h2>Parallel steps worth taking</h2><ul><li>Notify your bank or exchange in writing the same day</li><li>Freeze the receiving account if the platform allows</li><li>File with your state regulator; for identity theft, the credit bureaus</li><li>Preserve everything — do not tidy the evidence</li></ul>
-    <div class="notice"><strong>Beware the second fraud</strong> Anyone contacting you after you report, claiming to work your case and asking a fee, is not this division. Verify independently.</div>
+    <h2>What is realistic</h2><p>Speed decides most of it. Wires recalled within 24–72 hours occasionally return in part. Crypto at a cooperating exchange can sometimes be frozen. Crypto sent to self-custody after several hops is usually gone. Call your bank or exchange before you file.</p>
+    <h2>What we will not do</h2><ul><li>Promise a figure or a timeline</li><li>Give legal advice or represent you</li><li>Recover funds ourselves — we package, you and the institutions act</li></ul>
+    <h2>Do these in parallel</h2><ul><li>Notify your bank or exchange in writing the same day</li><li>Freeze the receiving account if the platform allows</li><li>File at ic3.gov as well — it costs nothing</li><li>Preserve everything; do not tidy the evidence</li></ul>
+    <div class="notice"><strong>Beware the second fraud</strong> Anyone contacting you after you file, claiming to work your case and asking a fee, is not us. Verify independently.</div>
   </div>
 </div>`;
 
-P['faq'] = () => `${head('Knowledge base','Frequently asked questions','If your question is not here, the contact page lists the intake line.')}
+P['faq'] = () => `${head('Answers','Frequently asked questions','If your question is not here, use the contact page.')}
 <div class="wrap" style="padding:1.8rem 0 2.6rem">
-  <details class="faq"><summary>Does it cost anything to report?</summary><div class="body">No. Filing is free at every stage.</div></details>
-  <details class="faq"><summary>Will I get my money back?</summary><div class="body">Not necessarily. Filing creates a record and can support a freeze if you act fast, but most losses are not fully recovered. Treat any guarantee — from anyone — as a warning sign.</div></details>
-  <details class="faq"><summary>How long before someone contacts me?</summary><div class="body">Triage runs 1–5 business days. If assigned, contact follows. If referred, you get a referral notice instead.</div></details>
-  <details class="faq"><summary>Can I file for someone else?</summary><div class="body">Yes, with their consent. Use their details and note the relationship in the description.</div></details>
-  <details class="faq"><summary>What if it happened outside the US?</summary><div class="body">File anyway if a US institution, person or dollar transfer is involved. Purely foreign matters are usually referred home.</div></details>
+  <details class="faq"><summary>Does it cost anything to file?</summary><div class="body">No. Filing is free.</div></details>
+  <details class="faq"><summary>Will I get my money back?</summary><div class="body">Not necessarily. Filing creates a record and can support a freeze if you act fast, but most losses are not fully recovered. Treat any guarantee as a warning sign.</div></details>
+  <details class="faq"><summary>Are you the FBI?</summary><div class="body">No. We are independent. Our files are built to be sent to the authorities — but you should also file at ic3.gov yourself.</div></details>
+  <details class="faq"><summary>How long before someone replies?</summary><div class="body">Within 5 hours during working hours, otherwise the next morning.</div></details>
   <details class="faq"><summary>Bank first, or file first?</summary><div class="body">Call the bank first — the recall clock starts there. Then file, and note the time you called and any reference they gave.</div></details>
-  <details class="faq"><summary>Do I need a lawyer?</summary><div class="body">Not to file. A lawyer matters if you intend to sue. Nothing here is legal advice.</div></details>
-  <details class="faq"><summary>A “recovery agent” contacted me — is it you?</summary><div class="body">Assume unconnected until proven. This division never charges fees, so any caller demanding one is either a private firm or a second fraud.</div></details>
-  <details class="faq"><summary>Can I update a report?</summary><div class="body">Yes — use the reference on the status page, or reply to the confirmation email. Add hashes and documents as they appear.</div></details>
-  <details class="faq"><summary>Is my information public?</summary><div class="body">No. Complaints feed aggregate statistics; your identity is not published.</div></details>
+  <details class="faq"><summary>A “recovery agent” contacted me — is it you?</summary><div class="body">Assume unconnected until proven. We never ask for a fee before producing anything.</div></details>
+  <details class="faq"><summary>Can I update a case?</summary><div class="body">Yes — reply to your confirmation email with the reference in the subject. Add hashes and documents as they appear.</div></details>
   <details class="faq"><summary>What counts as “loss”?</summary><div class="body">Funds actually transferred out and not returned. Unrealised gains on a dashboard are not a loss until withdrawal fails.</div></details>
 </div>`;
 
-P['offices'] = () => `${head('Directory','Field offices','Financial crime matters are worked from the office covering your residence. Intake routes the file — you do not choose.')}
-<div class="wrap" style="padding:1.8rem 0 2.6rem">
-  <div class="grid-3">
-    <div class="card"><h3>Washington Field Office</h3><p>D.C. · Virginia</p></div>
-    <div class="card"><h3>New York</h3><p>Southern &amp; Eastern Districts</p></div>
-    <div class="card"><h3>Los Angeles</h3><p>Central &amp; Southern California</p></div>
-    <div class="card"><h3>Chicago</h3><p>Northern Illinois</p></div>
-    <div class="card"><h3>Atlanta</h3><p>Northern Georgia</p></div>
-    <div class="card"><h3>Boston</h3><p>Massachusetts, Rhode Island</p></div>
-    <div class="card"><h3>Dallas</h3><p>North Texas</p></div>
-    <div class="card"><h3>Houston</h3><p>South Texas</p></div>
-    <div class="card"><h3>Miami</h3><p>Southern Florida</p></div>
-    <div class="card"><h3>Philadelphia</h3><p>Eastern Pennsylvania</p></div>
-    <div class="card"><h3>San Francisco</h3><p>Northern California</p></div>
-    <div class="card"><h3>Denver</h3><p>Colorado, Wyoming</p></div>
-  </div>
-  <div class="notice" style="margin-top:1.6rem"><strong>Note</strong> Addresses and direct lines are omitted for brevity. Add them before launch if you want the directory operational.</div>
-  <a href="#/report" class="btn btn-navy" style="margin-top:1rem">File a complaint</a>
-</div>`;
-
-P['about'] = () => `${head('Mandate','About the division','The intake and analysis function, and what it does and does not cover.')}
+P['about'] = () => `${head('Who we are','About','An independent intake desk for crypto and investment fraud.')}
 <div class="wrap"><div class="prose">
-  <h2>Mandate</h2><p>The division collects, triages and analyses financial crime reports, then routes them to investigation, referral or closure. Individual complaints are weak signals; clustered complaints on the same infrastructure become a case.</p>
-  <h2>Structure</h2><p>Intake analysts sit centrally. Investigative work is distributed across field offices. Pattern analysis sits between the two.</p>
-  <h2>Scope</h2><p>Covered: investment and securities fraud, crypto fraud, wire and ACH diversion, business email compromise, elder fraud, identity theft, mortgage fraud, romance fraud, tech support scams, charity fraud.</p>
-  <p>Not covered: ordinary retail disputes, employment claims, matters with no US nexus.</p>
-  <h2>What the division is not</h2><ul><li><strong>Not a recovery service.</strong> It does not chase funds for you.</li><li><strong>Not a court.</strong> It does not award compensation.</li><li><strong>Not free of limits.</strong> Most reports are referred or closed.</li></ul>
-  <div class="notice blue"><strong>On this clone</strong> This site reproduces the public-facing structure of the FBI's fraud-reporting pages as a design exercise. It is not an official government site.</div>
-  <a href="#/report" class="btn btn-navy">File a complaint</a>
+  <h2>What we do</h2><p>We take a victim's account in writing, check the platform behind it, and turn it into a documented file the victim can put in front of a bank, an exchange or a regulator. That is the job — not chasing money.</p>
+  <h2>Why it exists</h2><p>Most victims have a mess of screenshots, hashes and emails and no structure. Institutions respond to structure. The gap between the two is where cases die.</p>
+  <h2>What we are not</h2><ul><li><strong>Not the FBI.</strong> Independent, unaffiliated, no official status.</li><li><strong>Not a law firm.</strong> No legal advice, no representation.</li><li><strong>Not a guarantee.</strong> Most reports end in a referral or an honest no.</li></ul>
+  <div class="notice blue"><strong>Transparency</strong> Our numbers and the statistics we quote come from published FBI reporting. Where a figure is uncertain, it is labelled.</div>
+  <a href="#/report" class="btn btn-navy">File your case</a>
 </div></div>`;
 
-P['track'] = () => `${head('Report tracking','Check report status','Enter your reference number and the email used on the complaint.')}
+P['track'] = () => `${head('Case tracking','Check case status','Enter your reference number and the email used on the case.')}
 <div class="wrap" style="padding:1.8rem 0 2.6rem"><div class="form-shell" style="max-width:30rem">
   <form data-form>
-    <div class="field"><label for="rf">Reference number *</label><input id="rf" required placeholder="IC3-2026-000000" style="font-family:ui-monospace,monospace"></div>
-    <div class="field"><label for="em">Email *</label><input id="em" type="email" required></div>
+    <div class="field"><label for="rf">Reference number *</label><input id="rf" name="reference" required placeholder="FR-2026-000000" style="font-family:ui-monospace,monospace"></div>
+    <div class="field"><label for="em">Email *</label><input id="em" name="email" type="email" required></div>
     <button type="submit" class="btn btn-navy" style="width:100%">View status</button>
-    <p class="form-note">Issued by email on submission. Lost it? <a href="#/contact">Contact intake</a>.</p>
+    <p class="form-note">Reference numbers are sent by email on submission.</p>
   </form>
 </div></div>`;
 
-P['contact'] = () => `${head('Intake','Contact','For new matters use the complaint form. This page is for follow-up on existing files.')}
+P['contact'] = () => `${head('Contact','Get in touch','For a new case use the form. This page is for follow-up.')}
 <div class="wrap" style="padding:1.8rem 0 2.6rem">
-  <div class="grid-3" style="margin-bottom:1.6rem">
-    <div class="card"><h3>Email</h3><p>fraud@example.com</p></div>
-    <div class="card"><h3>Intake line</h3><p>(202) 324-3000<br>Mon–Fri · 08:00–18:00 ET</p></div>
-    <div class="card"><h3>Headquarters</h3><p>J. Edgar Hoover Building<br>935 Pennsylvania Ave NW<br>Washington, D.C. 20535</p></div>
+  <div class="grid-2" style="margin-bottom:1.6rem">
+    <div class="card"><h3>Email</h3><p>${EMAIL}</p></div>
+    <div class="card"><h3>Hours</h3><p>Mon–Sat · 09:00–21:00 UTC</p></div>
   </div>
   <div class="form-shell"><form data-form>
-    <div class="field"><label for="rf">Reference number <span class="hint">(if any)</span></label><input id="rf" style="font-family:ui-monospace,monospace"></div>
+    <div class="field"><label for="rf">Reference number <span class="hint">(if any)</span></label><input id="rf" name="reference" style="font-family:ui-monospace,monospace"></div>
     <div class="form-row">
-      <div class="field"><label for="nm">Name *</label><input id="nm" required></div>
-      <div class="field"><label for="em">Email *</label><input id="em" type="email" required></div>
+      <div class="field"><label for="nm">Name *</label><input id="nm" name="name" required></div>
+      <div class="field"><label for="em">Email *</label><input id="em" name="email" type="email" required></div>
     </div>
-    <div class="field"><label for="ms">Message *</label><textarea id="ms" rows="6" required></textarea></div>
+    <div class="field"><label for="ms">Message *</label><textarea id="ms" name="message" rows="6" required></textarea></div>
     <button type="submit" class="btn btn-navy" style="width:100%">Send message</button>
   </form></div>
 </div>`;
 
-P['privacy'] = () => `${head('Legal','Privacy policy','Last updated: 13 November 2026')}
+P['privacy'] = () => `${head('Legal','Privacy policy','Last updated: today')}
 <div class="wrap"><div class="prose">
-  <h2>1. Collected data</h2><p>Name, email, phone, fraud category, loss amount, platform identifiers, transaction references, free-text description. Automatically: IP, user agent, timestamp.</p>
-  <h2>2. Purpose</h2><p>Solely to triage, analyse and route complaints. No marketing use, no sale.</p>
-  <h2>3. Retention</h2><p>Three years after closure for audit and pattern analysis, unless earlier deletion is requested.</p>
-  <h2>4. Sharing</h2><p>May be shared with partner offices, the receiving bank or exchange, and regulators where referred.</p>
-  <h2>5. Your rights</h2><p>Access, correction and deletion: fraud@example.com.</p>
-  <h2>6. Security</h2><p>Encrypted in transit. Access restricted to authorised personnel.</p>
-  <h2>7. Cookies</h2><p>No advertising or tracking cookies.</p>
+  <h2>1. What we collect</h2><p>Name, email, phone, scam category, loss amount, platform identifiers, wallet addresses and hashes, and your description. Automatically: IP address, browser, timestamp.</p>
+  <h2>2. Why</h2><p>Solely to assess and document your case. No marketing, no selling.</p>
+  <h2>3. Who processes it</h2><p>Form submissions are delivered by Web3Forms and stored on their servers, then emailed to us. Our email provider holds the copy.</p>
+  <h2>4. Retention</h2><p>Twelve months after closure, unless you ask for earlier deletion.</p>
+  <h2>5. Sharing</h2><p>Only where you ask us to, or where a file is prepared for an institution you name.</p>
+  <h2>6. Your rights</h2><p>Access, correction, deletion: ${EMAIL}.</p>
+  <h2>7. Cookies</h2><p>None for advertising or tracking.</p>
 </div></div>`;
 
-P['terms'] = () => `${head('Legal','Terms of use','Last updated: 13 November 2026')}
+P['terms'] = () => `${head('Legal','Terms of use','Last updated: today')}
 <div class="wrap"><div class="prose">
-  <h2>1. Nature of the site</h2><p>An independent clone of the FBI's public fraud-reporting pages, for demonstration. Not an official government service.</p>
-  <h2>2. No agency</h2><p>Submitting creates a record in this system only. It does not file anything with the real FBI or IC3.</p>
-  <h2>3. No guarantee</h2><p>No outcome, timeline or figure is guaranteed. Statistics are reproduced from published reporting and are unaudited.</p>
-  <h2>4. Accuracy</h2><p>You agree to submit information accurate to the best of your knowledge.</p>
-  <h2>5. Fees</h2><p>None.</p>
-  <h2>6. Liability</h2><p>Provided “as is”, without warranty.</p>
+  <h2>1. What this is</h2><p>An independent intake and documentation service. Not a government body, not a law firm.</p>
+  <h2>2. No agency</h2><p>Filing here does not file anything with the FBI, IC3 or any regulator. Do that separately.</p>
+  <h2>3. No guarantee</h2><p>No outcome, timeline or recovery figure is promised.</p>
+  <h2>4. Your part</h2><p>Submit accurate information and respond to requests.</p>
+  <h2>5. Fees</h2><p>Filing is free. Any later fee is agreed in writing first.</p>
+  <h2>6. Liability</h2><p>Provided as is, without warranty.</p>
 </div></div>`;
 
 P['disclaimer'] = () => `${head('Legal','Disclaimer','Read before relying on anything here.')}
 <div class="wrap"><div class="prose">
-  <div class="notice"><strong>Core disclaimer</strong>This is an independent clone. It is not the FBI, not a government website, and holds no official status. A complaint filed here does not reach the real FBI unless you separately file at ic3.gov.</div>
-  <p><strong>No government affiliation.</strong> “FBI” and “Federal Bureau of Investigation” are used descriptively. The seal is a recreation, not the official artwork.</p>
+  <div class="notice"><strong>Core disclaimer</strong>This is an independent service. It is not the FBI, not a government website, and holds no official status. A case filed here does not reach the FBI unless you file at ic3.gov yourself.</div>
+  <p><strong>No affiliation.</strong> “FBI” and “Federal Bureau of Investigation” are used descriptively. The seal is a recreation.</p>
   <p><strong>No legal advice.</strong> Nothing here is legal advice.</p>
-  <p><strong>Statistics.</strong> Figures derive from the FBI's published 2024 Internet Crime Report. Check the primary source before citing.</p>
+  <p><strong>Statistics.</strong> From the FBI's published 2024 Internet Crime Report. Check the primary source before citing.</p>
   <p><strong>No recovery guarantee.</strong> No money is recovered by this site.</p>
-  <p><strong>Contact details.</strong> Email, phone and addresses are illustrative placeholders.</p>
 </div></div>`;
 
-P['404'] = () => `${head('Error 404','Page not found','The page you requested does not exist or has moved.')}<div class="wrap" style="padding:0 0 3rem"><a href="#/" class="btn btn-navy">Return home</a></div>`;
+P['404'] = () => `${head('Error 404','Page not found','That page does not exist.')}<div class="wrap" style="padding:0 0 3rem"><a href="#/" class="btn btn-navy">Return home</a></div>`;
 
 const main = document.getElementById('main');
 const nav = document.getElementById('nav');
@@ -525,7 +499,7 @@ function route() {
   const key = (location.hash.replace(/^#\/?/, '') || '').split('?')[0];
   main.innerHTML = (P[key] || P['404'])();
   nav.querySelectorAll('a').forEach(a => {
-    a.hasAttribute('aria-current') && a.removeAttribute('aria-current');
+    if (a.hasAttribute('aria-current')) a.removeAttribute('aria-current');
     if (a.dataset.r === key) a.setAttribute('aria-current', 'page');
   });
   nav.classList.remove('open');
@@ -550,16 +524,36 @@ document.addEventListener('submit', async e => {
   const btn = form.querySelector('button[type="submit"]');
   const orig = btn.innerHTML;
   btn.disabled = true;
-  btn.textContent = 'Submitting…';
-  await new Promise(r => setTimeout(r, 1000));
-  const ref = 'IC3-' + new Date().getFullYear() + '-' + Math.floor(100000 + Math.random() * 899999);
+  btn.textContent = 'Sending…';
+
+  const ref = 'FR-' + new Date().getFullYear() + '-' + Math.floor(100000 + Math.random() * 899999);
+  const data = new FormData(form);
+  data.append('access_key', ACCESS_KEY);
+  data.append('subject', 'New case ' + ref + ' — ' + (data.get('fraud_type') || 'contact'));
+  data.append('from_name', BRAND + ' website');
+  data.append('reference', ref);
+
+  let ok = false;
+  try {
+    const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: data });
+    ok = (await res.json()).success === true;
+  } catch { ok = false; }
+
   const n = document.createElement('p');
   n.className = 'form-note';
   n.style.fontWeight = '700';
-  n.style.color = '#0a6b3d';
-  n.textContent = 'Complaint received. Reference ' + ref + '. Keep it.';
-  form.appendChild(n);
-  btn.textContent = 'Submitted ✓';
+  if (ok) {
+    n.style.color = '#0a6b3d';
+    n.textContent = 'Received. Your reference is ' + ref + '. Check your inbox and reply to that email with documents.';
+    form.appendChild(n);
+    btn.textContent = 'Submitted ✓';
+  } else {
+    n.style.color = '#a11b1b';
+    n.textContent = 'Could not send. Please email us directly at ' + EMAIL + '.';
+    form.appendChild(n);
+    btn.textContent = orig;
+    btn.disabled = false;
+  }
 });
 
 window.addEventListener('hashchange', route);
