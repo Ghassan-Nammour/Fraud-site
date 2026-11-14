@@ -143,6 +143,18 @@ details.faq .body{padding:0 1rem 1rem;font-size:13.5px;color:var(--muted)}
 
 <a href="#main" class="skip">Skip to main content</a>
 
+<!-- Netlify form definition. Do not delete. -->
+<div style="display:none">
+  <form name="case" data-netlify="true" netlify-honeypot="botcheck">
+    <input name="botcheck"><input name="form_type"><input name="first_name">
+    <input name="last_name"><input name="email"><input name="phone">
+    <input name="fraud_type"><input name="amount"><input name="date_lost">
+    <input name="platform"><textarea name="summary"></textarea>
+    <textarea name="references"></textarea><input name="reference">
+    <input name="message"><input name="consent">
+  </form>
+</div>
+
 <div class="gov-bar">
   <div class="wrap">
     <span id="barLeft"></span>
@@ -221,12 +233,11 @@ details.faq .body{padding:0 1rem 1rem;font-size:13.5px;color:var(--muted)}
 
 <script>
 /* ============================================================
-   EDIT THESE FOUR LINES ONLY. Everything else reads from them.
+   EDIT THESE THREE LINES ONLY.
    ============================================================ */
-const BRAND     = 'Crypto Fraud Intake';
-const TAGLINE   = 'Independent fraud intake desk';
-const EMAIL     = 'soderborgdavid@gmail.com';
-const ACCESS_KEY = '757dbf5a-aed0-41a7-9375-08b47dce7e38';
+const BRAND   = 'Crypto Fraud Intake';
+const TAGLINE = 'Independent fraud intake desk';
+const EMAIL   = 'you@example.com';
 /* ============================================================ */
 
 const seal = `<svg class="seal" viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="96" fill="#0b2a5b"/><circle cx="100" cy="100" r="88" fill="none" stroke="#c8a04a" stroke-width="2"/><circle cx="100" cy="100" r="60" fill="#0b2a5b" stroke="#c8a04a" stroke-width="1.5"/><defs><path id="aT" d="M100,100 m-78,0 a78,78 0 1,1 156,0"/><path id="aB" d="M100,100 m-78,0 a78,78 0 1,0 156,0"/></defs><text fill="#c8a04a" font-size="10.5" font-weight="700" letter-spacing="2.1" font-family="Georgia,serif"><textPath href="#aT" startOffset="50%" text-anchor="middle">INDEPENDENT INTAKE</textPath></text><text fill="#c8a04a" font-size="8.5" font-weight="700" letter-spacing="1.8" font-family="Georgia,serif"><textPath href="#aB" startOffset="50%" text-anchor="middle">CRYPTO · INVESTMENT · WIRE</textPath></text><path d="M100 62 L128 74 v26 c0 18-12 30-28 38-16-8-28-20-28-38V74z" fill="#123f7d" stroke="#c8a04a" stroke-width="2"/><path d="M100 62 L128 74 v26 c0 18-12 30-28 38z" fill="#0b2a5b"/><path d="M84 88h32M84 96h32M84 104h32" stroke="#c8a04a" stroke-width="1.5"/><circle cx="100" cy="73" r="3.4" fill="#c8a04a"/></svg>`;
@@ -464,7 +475,7 @@ P['privacy'] = () => `${head('Legal','Privacy policy','Last updated: today')}
 <div class="wrap"><div class="prose">
   <h2>1. What we collect</h2><p>Name, email, phone, scam category, loss amount, platform identifiers, wallet addresses and hashes, and your description. Automatically: IP address, browser, timestamp.</p>
   <h2>2. Why</h2><p>Solely to assess and document your case. No marketing, no selling.</p>
-  <h2>3. Who processes it</h2><p>Form submissions are delivered by Web3Forms and stored on their servers, then emailed to us. Our email provider holds the copy.</p>
+  <h2>3. Who processes it</h2><p>Form submissions are handled and stored by our host, Netlify, then emailed to us. Our email provider holds the copy.</p>
   <h2>4. Retention</h2><p>Twelve months after closure, unless you ask for earlier deletion.</p>
   <h2>5. Sharing</h2><p>Only where you ask us to, or where a file is prepared for an institution you name.</p>
   <h2>6. Your rights</h2><p>Access, correction, deletion: ${EMAIL}.</p>
@@ -527,16 +538,19 @@ document.addEventListener('submit', async e => {
   btn.textContent = 'Sending…';
 
   const ref = 'FR-' + new Date().getFullYear() + '-' + Math.floor(100000 + Math.random() * 899999);
-  const data = new FormData(form);
-  data.append('access_key', ACCESS_KEY);
-  data.append('subject', 'New case ' + ref + ' — ' + (data.get('fraud_type') || 'contact'));
-  data.append('from_name', BRAND + ' website');
-  data.append('reference', ref);
+  const fd = new FormData(form);
+  fd.append('form-name', 'case');
+  fd.append('reference', ref);
+  fd.append('form_type', (location.hash.replace(/^#\/?/, '') || 'home'));
 
   let ok = false;
   try {
-    const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: data });
-    ok = (await res.json()).success === true;
+    const res = await fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(fd).toString()
+    });
+    ok = res.ok;
   } catch { ok = false; }
 
   const n = document.createElement('p');
@@ -544,12 +558,12 @@ document.addEventListener('submit', async e => {
   n.style.fontWeight = '700';
   if (ok) {
     n.style.color = '#0a6b3d';
-    n.textContent = 'Received. Your reference is ' + ref + '. Check your inbox and reply to that email with documents.';
+    n.textContent = 'Received. Your reference is ' + ref + '. Check your inbox — reply to that email with documents.';
     form.appendChild(n);
     btn.textContent = 'Submitted ✓';
   } else {
     n.style.color = '#a11b1b';
-    n.textContent = 'Could not send. Please email us directly at ' + EMAIL + '.';
+    n.textContent = 'Could not send. Email us directly at ' + EMAIL + ' and we will take it from there.';
     form.appendChild(n);
     btn.textContent = orig;
     btn.disabled = false;
